@@ -24,9 +24,6 @@ export function Landing({
         </nav>
         <div className="actions">
           {theme}
-          <a className="btn outline" href="#/workspace">
-            My resumes
-          </a>
         </div>
       </header>
       <section className="hero">

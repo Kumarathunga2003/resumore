@@ -2617,3 +2617,36 @@ a {
   .studio .topbar .button-primary { grid-area: 2 / 3; padding-inline: 9px; }
   .studio .topbar .save-status { grid-area: 3 / 1 / 4 / -1; justify-self: start; }
 }
+
+.mobile-section-heading { display: none; }
+
+@media screen and (max-width: 650px) {
+  .landing .siteheader {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    row-gap: 8px;
+  }
+  .landing .siteheader .actions { grid-area: 1 / 2; margin: 0; }
+  .landing .siteheader nav { grid-column: 1 / -1; justify-content: flex-start; gap: clamp(16px,6vw,34px); }
+  .hero .actions .btn { width: 100%; line-height: 1.3; text-align: center; }
+  .hero .specimen-switch { right: auto; left: 12px; bottom: 12px; max-width: calc(100% - 84px); }
+  .hero .specimen-switch button { min-height: 40px; }
+  .studio .sidebar.show + .workspace-body { display: none; }
+  .studio .sidebar.show { align-self: start; margin-bottom: 84px; }
+  .mobile-section-heading {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; padding-bottom: 10px; margin-bottom: 8px;
+    border-bottom: 1px solid #ffffff38;
+  }
+  .mobile-section-heading strong { font-size: 1.12rem; color: white; }
+  .mobile-section-heading button {
+    border-radius: 9px; border: 1px solid #ffffff55; color: white;
+    background: #ffffff14; font: inherit; font-weight: 650;
+    min-height: 44px; padding: 6px 12px;
+  }
+  .studio .sidebar .nav-entry span { overflow-wrap: anywhere; }
+  .workspace-dialog { box-sizing: border-box; max-width: calc(100vw - 20px); max-height: calc(100dvh - 24px); padding: 16px; }
+  .workspace-dialog :is(button,select) { min-height: 42px; }
+  .workspace-dialog header { gap: 8px; }
+  .studio .section-controls > div, .editor-footer { flex-wrap: wrap; }
+}

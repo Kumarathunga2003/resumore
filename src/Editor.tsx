@@ -83,6 +83,26 @@ function Editor({
   const [active, setActive] = useState("profile");
   const [appearance, setAppearance] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const sectionsTrigger = useRef<HTMLButtonElement>(null);
+  const backButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!sidebarOpen) return;
+    backButton.current?.focus({ preventScroll: true });
+    function onEscape(event: KeyboardEvent) {
+      if (event.key === "Escape" && !document.querySelector("dialog[open], [role=dialog]:not([hidden])")) {
+        setSidebarOpen(false);
+        sectionsTrigger.current?.focus();
+      }
+    }
+    const phone = matchMedia("(max-width: 650px)");
+    const onResize = () => { if (!phone.matches) setSidebarOpen(false); };
+    phone.addEventListener("change", onResize);
+    window.addEventListener("keydown", onEscape);
+    return () => {
+      phone.removeEventListener("change", onResize);
+      window.removeEventListener("keydown", onEscape);
+    };
+  }, [sidebarOpen]);
   const [preview, setPreview] = useState(false);
 
   const [view, setView] = useState<"live" | "edit" | "pages">("live");
@@ -249,11 +269,12 @@ function Editor({
         {exportError && <p role="alert">{exportError}</p>}
         <div className="mobile-tabs">
           <button
+            ref={sectionsTrigger}
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-expanded={sidebarOpen}
             aria-controls="resume-sections"
           >
-            Sections
+            {sidebarOpen ? "Close sections" : "Sections"}
           </button>
           <button aria-pressed={!preview} onClick={() => { setSidebarOpen(false); setPreview(false); }}>
             Edit
@@ -264,6 +285,13 @@ function Editor({
         </div>
         <div className="workspace">
           <aside id="resume-sections" aria-label="Resume sections" className={`sidebar ${sidebarOpen ? "show" : ""}`}>
+            <div className="mobile-section-heading">
+              <strong>Sections</strong>
+              <button ref={backButton} type="button" onClick={() => {
+                setSidebarOpen(false);
+                sectionsTrigger.current?.focus();
+              }}>Back to {preview ? "preview" : "editor"}</button>
+            </div>
             <div className="sidebar-top">
               <div className="eyebrow">WORKSPACE</div>
               <h2>Your resume</h2>
