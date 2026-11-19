@@ -1,4 +1,4 @@
-# Resumora
+# Resumora 1.0
 
 Your career story, beautifully crafted.
 
