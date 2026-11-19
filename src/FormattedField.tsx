@@ -61,6 +61,7 @@ export function FormattedField({
     () => () => activate((current) => (current === id ? "" : current)),
     [id, activate],
   );
+  const [moreTools, setMoreTools] = useState(false);
   const [menu, setMenu] = useState<"spacing" | "style" | null>(null);
   useEffect(() => {
     if (!visible) {
@@ -181,6 +182,7 @@ export function FormattedField({
           <div className="ribbon-wrap">
             <div
               className="type-ribbon"
+              data-expanded={moreTools}
               role="toolbar"
               aria-label={label + " formatting"}
             >
@@ -370,6 +372,11 @@ export function FormattedField({
                 false,
                 menu === "style",
               )}
+              <button type="button" className="mobile-more" aria-expanded={moreTools}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => { setMoreTools(!moreTools); setMenu(null); setUrl(null); }}>
+                {moreTools ? "Fewer tools" : "More tools"}
+              </button>
             </div>
             {menu === "spacing" && (
               <div className="tool-pop" aria-label="Spacing settings">

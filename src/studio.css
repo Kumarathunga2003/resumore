@@ -2519,3 +2519,101 @@ a {
 .creator-credit { display: grid; gap: 6px; font-size: .875rem; }
 .creator-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
 .creator-links a { color: var(--key); text-decoration: underline; text-underline-offset: 3px; }
+
+.studio .type-ribbon .mobile-more { display: none; }
+
+@media screen and (max-width: 650px) {
+  .landing .siteheader, .dashboard .siteheader {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+  .landing .siteheader nav {
+    display: flex;
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: space-between;
+    gap: 6px;
+    border-top: 1px solid var(--border);
+    padding-top: 4px;
+  }
+  .landing .siteheader nav a { display: grid; align-items: center; min-height: 40px; }
+  .landing .siteheader .actions { margin-left: auto; flex-wrap: wrap; }
+  .siteheader .settings-trigger, .siteheader .actions .btn { min-height: 40px; padding-inline: 9px; }
+  .hero, .content-section, .landing footer { padding-inline: 16px; }
+  .hero .actions { display: grid; grid-template-columns: 1.2fr 1fr; }
+  .hero .actions .btn { min-height: 46px; }
+  .hero .desk { aspect-ratio: 1.55; }
+  .template-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  .template-gallery > button { min-width: 0; }
+  .template-swatch { height: 102px; }
+  .swatch-page { transform: scale(.145); }
+  .dashboard .actions.wrap { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  .dashboard .actions.wrap .primary { grid-column: 1/-1; }
+  .doc-info h3 { overflow-wrap: anywhere; }
+  .dashboard .doc-actions button { min-height: 40px; }
+  .dashboard .search { width: 100%; box-sizing: border-box; }
+  .landing footer, .dashboard .content-section { padding-bottom: 84px; }
+
+  .studio .topbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    height: auto;
+  }
+  .studio .topbar .back, .studio .topbar .settings-trigger, .studio .topbar .button {
+    min-height: 40px; font-size: .78rem; display: inline-flex; align-items: center;
+    margin: 0; white-space: nowrap;
+  }
+  .studio .topbar .back { padding: 0; border: 0; }
+  .studio .topbar .brand-symbol { width: 30px; height: 30px; }
+  .studio input.doc-title { grid-column: 1/4; grid-row: 2; width: 100%; font-size: 16px; }
+  .studio .topbar .save-status { grid-column: 4; grid-row: 2; margin: 0; font-size: .73rem; text-align: right; }
+  .studio .mobile-tabs {
+    display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 4px; padding: 6px 12px; background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .studio .mobile-tabs button { min-height: 42px; padding: 6px; }
+  .studio .mobile-tabs button[aria-expanded=true] { background: var(--tint); color: var(--key); }
+  .studio .sidebar:not(.show) { display: none; }
+  .studio .sidebar.show {
+    position: static; width: auto; height: auto; min-height: 0; transform: none;
+    margin: 10px 12px; padding: 12px; border-radius: 14px; box-shadow: none;
+  }
+  .studio .sidebar.show .sidebar-top, .studio .sidebar.show .tip { display: none; }
+  .studio .sidebar .sidebar-bottom { margin-top: 10px; }
+  .studio .sidebar .nav-entry, .studio .sidebar .add-section { min-height: 44px; }
+  .studio .workspace-body { --controls-inset: 12px; }
+  .studio .workspace-body > .format-dock { top: 4px; }
+  .studio .type-ribbon .mobile-more {
+    display: inline-flex; width: auto; padding-inline: 8px; font-size: .8rem; color: var(--key);
+  }
+  .studio .type-ribbon[data-expanded=false] > :not([aria-label="Undo"],[aria-label="Redo"],[aria-label="Bold"],[aria-label="Italic"],.mobile-more) {
+    display: none;
+  }
+  .studio .type-ribbon > button { min-height: 36px; }
+  .studio .edit-panel { padding: 12px 12px 76px; }
+  .studio .panel-heading { margin-bottom: 16px; }
+  .studio .edit-card { padding: 18px 14px; }
+  .studio .edit-panel :is(input,textarea,select):not([type=checkbox],[type=range],[type=color]) { font-size: 16px; max-width: 100%; }
+  .studio .preview-panel { padding: 8px 12px 76px; min-height: 0; }
+  .studio .preview-modes { display: flex; flex-wrap: wrap; gap: 4px; }
+  .studio .preview-modes button { min-height: 40px; flex: 1; }
+  .assistant-widget { right: max(12px,env(safe-area-inset-right)); bottom: max(12px,env(safe-area-inset-bottom)); gap: 6px; }
+  .app button.assistant-launcher { width: 52px; height: 52px; }
+  .assistant-panel { width: min(390px,calc(100vw - 24px)); max-height: calc(100dvh - 84px); }
+  .assistant-panel nav button { min-height: 40px; }
+  .assistant-panel input, .assistant-panel textarea { font-size: 16px; }
+}
+
+@media screen and (max-width: 425px) {
+  .studio .topbar { grid-template-columns: 32px minmax(0,1fr) auto; }
+  .studio .topbar .brand { grid-area: 1 / 1; }
+  .studio .topbar .back { grid-area: 1 / 2; }
+  .studio .topbar .settings-trigger { grid-area: 1 / 3; }
+  .studio .topbar input.doc-title { grid-area: 2 / 1 / 3 / 3; }
+  .studio .topbar .button-primary { grid-area: 2 / 3; padding-inline: 9px; }
+  .studio .topbar .save-status { grid-area: 3 / 1 / 4 / -1; justify-self: start; }
+}

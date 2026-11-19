@@ -251,18 +251,19 @@ function Editor({
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-expanded={sidebarOpen}
+            aria-controls="resume-sections"
           >
             Sections
           </button>
-          <button aria-pressed={!preview} onClick={() => setPreview(false)}>
+          <button aria-pressed={!preview} onClick={() => { setSidebarOpen(false); setPreview(false); }}>
             Edit
           </button>
-          <button aria-pressed={preview} onClick={() => setPreview(true)}>
+          <button aria-pressed={preview} onClick={() => { setSidebarOpen(false); setPreview(true); }}>
             Preview
           </button>
         </div>
         <div className="workspace">
-          <aside className={`sidebar ${sidebarOpen ? "show" : ""}`}>
+          <aside id="resume-sections" aria-label="Resume sections" className={`sidebar ${sidebarOpen ? "show" : ""}`}>
             <div className="sidebar-top">
               <div className="eyebrow">WORKSPACE</div>
               <h2>Your resume</h2>
